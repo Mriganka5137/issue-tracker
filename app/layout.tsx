@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import NavBar from "./NavBar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
@@ -21,7 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.variable, poppins.variable)}>{children}</body>
+      <body className={cn(inter.variable, poppins.variable)}>
+        <NavBar />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
