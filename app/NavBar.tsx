@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { FaBug } from "react-icons/fa6";
 import classNames from "classnames";
+import { ModeToggle } from "@/components/mode-toggle";
 const NavBar = () => {
   const navLinks = [
     {
@@ -37,6 +38,7 @@ const NavBar = () => {
           </Link>
         ))}
       </ul>
+      <ModeToggle />
     </nav>
   );
 };

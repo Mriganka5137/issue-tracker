@@ -3,7 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import NavBar from "./NavBar";
-
+import { ThemeProvider } from "@/components/ui/theme-provider";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.variable, poppins.variable)}>
-        <NavBar />
-        <main>{children}</main>
+        <ThemeProvider attribute="class" defaultTheme="system">
+          <NavBar />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
