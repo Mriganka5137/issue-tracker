@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={cn(inter.variable, poppins.variable)}>
         <ThemeProvider attribute="class" defaultTheme="system">
           <NavBar />
-          <main>{children}</main>
+          <main className=" p-5">{children}</main>
         </ThemeProvider>
       </body>
     </html>
