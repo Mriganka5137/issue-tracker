@@ -11,16 +11,23 @@ import { useRouter } from "next/navigation";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import error from "next/error";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createIssueSchema } from "@/validation/createIssueSchema";
 
-interface NewIssueForm {
-  title: string;
-  description: string;
-}
+type NewIssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssue = () => {
   const router = useRouter();
   const [error, setError] = useState("");
-  const { register, control, handleSubmit } = useForm<NewIssueForm>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewIssueForm>({
+    resolver: zodResolver(createIssueSchema),
+  });
   return (
     <div className="max-w-xl">
       {error && (
@@ -43,6 +50,9 @@ const NewIssue = () => {
         })}
       >
         <Input type="text" placeholder="Title" {...register("title")} />
+        {errors.title && (
+          <p className=" text-red-400">{errors.title.message}</p>
+        )}
         <Controller
           name="description"
           control={control}
@@ -50,6 +60,9 @@ const NewIssue = () => {
             <SimpleMdeReact placeholder="Description" {...field} />
           )}
         />
+        {errors.description && (
+          <p className=" text-red-400">{errors.description.message}</p>
+        )}
         <Button>Submit New Issue</Button>
       </form>
     </div>
