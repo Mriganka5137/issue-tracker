@@ -18,7 +18,7 @@ const NavBar = () => {
 
   const pathname = usePathname();
   return (
-    <nav className=" flex gap-6 border-b h-14 items-center px-5 mb-5">
+    <nav className=" flex gap-6 border-b h-14 items-center px-5 mb-5 font-poppins">
       <Link href="/">
         <FaBug />
       </Link>
