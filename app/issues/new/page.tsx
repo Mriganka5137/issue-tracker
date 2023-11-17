@@ -14,12 +14,14 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/validation/createIssueSchema";
 import ErrorMessage from "@/components/ErrorMessage";
+import Spinner from "@/components/Spinner";
 
 type NewIssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssue = () => {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [submiting, setSubmiting] = useState(false);
   const {
     register,
     control,
@@ -42,9 +44,11 @@ const NewIssue = () => {
         className="space-y-4 "
         onSubmit={handleSubmit(async (data) => {
           try {
+            setSubmiting(true);
             await axios.post("/api/issues", data);
             router.push("/issues");
           } catch (error) {
+            setSubmiting(false);
             setError("Fill the form correctly");
           }
         })}
@@ -60,7 +64,10 @@ const NewIssue = () => {
         />
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-        <Button>Submit New Issue</Button>
+        <Button disabled={submiting}>
+          Submit New Issue
+          {submiting && <Spinner />}
+        </Button>
       </form>
     </div>
   );
