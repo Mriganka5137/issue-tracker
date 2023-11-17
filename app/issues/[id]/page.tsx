@@ -1,3 +1,5 @@
+import IssueStatusBadge from "@/components/IssueStatusBadge";
+import { Card, CardContent, CardDescription } from "@/components/ui/card";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -18,9 +20,14 @@ const IssueDetailPage = async ({ params }: Props) => {
 
   return (
     <div>
-      <p>{issue.title}</p>
-      <p>{issue.description}</p>
-      <p>{issue.status}</p>
+      <h1>{issue.title}</h1>
+      <div className="flex gap-5 my-3">
+        <IssueStatusBadge status={issue.status} />
+        <p>{issue.createAt.toDateString()}</p>
+      </div>
+      <Card className="p-3">
+        <CardDescription>{issue.description}</CardDescription>
+      </Card>
     </div>
   );
 };
