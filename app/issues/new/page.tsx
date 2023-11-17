@@ -30,6 +30,18 @@ const NewIssue = () => {
   } = useForm<NewIssueForm>({
     resolver: zodResolver(createIssueSchema),
   });
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setSubmiting(true);
+      await axios.post("/api/issues", data);
+      router.push("/issues");
+    } catch (error) {
+      setSubmiting(false);
+      setError("Fill the form correctly");
+    }
+  });
+
   return (
     <div className="max-w-xl">
       {error && (
@@ -40,19 +52,7 @@ const NewIssue = () => {
         </Alert>
       )}
 
-      <form
-        className="space-y-4 "
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            setSubmiting(true);
-            await axios.post("/api/issues", data);
-            router.push("/issues");
-          } catch (error) {
-            setSubmiting(false);
-            setError("Fill the form correctly");
-          }
-        })}
-      >
+      <form className="space-y-4 " onSubmit={onSubmit}>
         <Input type="text" placeholder="Title" {...register("title")} />
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
