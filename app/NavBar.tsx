@@ -32,7 +32,7 @@ const NavBar = () => {
               className={classNames({
                 "text-foreground": link.href === pathname,
                 "text-foreground/60": link.href !== pathname,
-                "hover:text-zinc-700 transition-colors": true,
+                "hover:text-primary transition-colors": true,
               })}
             >
               {link.label}
