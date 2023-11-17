@@ -26,7 +26,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         <IssueStatusBadge status={issue.status} />
         <p>{issue.createAt.toDateString()}</p>
       </div>
-      <Card className="p-3 prose ">
+      <Card className="p-3 mt-10 prose">
         <ReactMarkdown>{issue.description}</ReactMarkdown>
       </Card>
     </div>

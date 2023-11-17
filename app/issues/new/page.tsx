@@ -1,20 +1,19 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import React, { useState } from "react";
-import SimpleMdeReact from "react-simplemde-editor";
-import "easymde/dist/easymde.min.css";
-import { useForm, Controller } from "react-hook-form";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { createIssueSchema } from "@/validation/createIssueSchema";
 import ErrorMessage from "@/components/ErrorMessage";
 import Spinner from "@/components/Spinner";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { createIssueSchema } from "@/validation/createIssueSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import "easymde/dist/easymde.min.css";
+import { AlertCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import SimpleMdeReact from "react-simplemde-editor";
+import z from "zod";
 
 type NewIssueForm = z.infer<typeof createIssueSchema>;
 

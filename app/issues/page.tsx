@@ -13,12 +13,11 @@ import {
 import prisma from "@/prisma/client";
 import Link from "@/components/Link";
 import React from "react";
-import delay from "delay";
+
 import IssuesAction from "./IssuesAction";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
-  await delay(2000);
 
   return (
     <div className="font-poppins">
