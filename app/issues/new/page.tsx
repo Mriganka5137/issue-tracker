@@ -22,6 +22,7 @@ const NewIssue = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [submiting, setSubmiting] = useState(false);
+
   const {
     register,
     control,

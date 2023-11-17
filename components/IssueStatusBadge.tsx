@@ -22,9 +22,10 @@ const IssueStatusBadge = ({ status }: { status: Status }) => {
   return (
     <Badge
       className={classNames({
-        "bg-red-400 hover:bg-red-500": status === "OPEN",
-        "bg-violet-400 hover:bg-violet-500": status === "IN_PROGRESS",
-        "bg-green-400 hover:bg-green-500": status === "CLOSED",
+        "bg-red-400 hover:bg-red-500  rounded-sm": status === "OPEN",
+        "bg-violet-400 hover:bg-violet-500 rounded-sm":
+          status === "IN_PROGRESS",
+        "bg-green-400 hover:bg-green-500 rounded-sm": status === "CLOSED",
       })}
     >
       {label}
