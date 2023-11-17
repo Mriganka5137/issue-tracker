@@ -11,7 +11,7 @@ import {
   TableFooter,
 } from "@/components/ui/table";
 import prisma from "@/prisma/client";
-import Link from "next/link";
+import Link from "@/components/Link";
 import React from "react";
 import delay from "delay";
 import IssuesAction from "./IssuesAction";
