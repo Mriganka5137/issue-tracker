@@ -10,10 +10,10 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import error from "next/error";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/validation/createIssueSchema";
+import ErrorMessage from "@/components/ErrorMessage";
 
 type NewIssueForm = z.infer<typeof createIssueSchema>;
 
@@ -32,14 +32,14 @@ const NewIssue = () => {
     <div className="max-w-xl">
       {error && (
         <Alert variant="destructive" className="mb-5">
-          <AlertCircle className="h-4 w-4" />
+          <AlertCircle className="w-4 h-4" />
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
       <form
-        className=" space-y-4 "
+        className="space-y-4 "
         onSubmit={handleSubmit(async (data) => {
           try {
             await axios.post("/api/issues", data);
@@ -50,9 +50,7 @@ const NewIssue = () => {
         })}
       >
         <Input type="text" placeholder="Title" {...register("title")} />
-        {errors.title && (
-          <p className=" text-red-400">{errors.title.message}</p>
-        )}
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
         <Controller
           name="description"
           control={control}
@@ -60,9 +58,8 @@ const NewIssue = () => {
             <SimpleMdeReact placeholder="Description" {...field} />
           )}
         />
-        {errors.description && (
-          <p className=" text-red-400">{errors.description.message}</p>
-        )}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
+
         <Button>Submit New Issue</Button>
       </form>
     </div>
