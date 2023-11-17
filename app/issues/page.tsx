@@ -1,3 +1,4 @@
+import IssueStatusBadge from "@/components/IssueStatusBadge";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -35,9 +36,13 @@ const IssuesPage = async () => {
             <TableRow key={issue.id}>
               <TableCell className="font-medium">
                 {issue.title}
-                <div className=" sm:hidden">{issue.status}</div>
+                <div className=" sm:hidden">
+                  <IssueStatusBadge status={issue.status} />
+                </div>
               </TableCell>
-              <TableCell className="max-sm:hidden">{issue.status}</TableCell>
+              <TableCell className="max-sm:hidden">
+                <IssueStatusBadge status={issue.status} />
+              </TableCell>
               <TableCell className="max-sm:hidden">
                 {issue.createAt.toDateString()}
               </TableCell>
