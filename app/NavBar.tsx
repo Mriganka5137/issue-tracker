@@ -19,25 +19,27 @@ const NavBar = () => {
 
   const pathname = usePathname();
   return (
-    <nav className=" flex gap-6 border-b h-14 items-center px-5 mb-5 font-poppins">
-      <Link href="/">
-        <FaBug />
-      </Link>
-      <ul className=" flex gap-6">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={classNames({
-              "text-foreground": link.href === pathname,
-              "text-foreground/60": link.href !== pathname,
-              "hover:text-zinc-700 transition-colors": true,
-            })}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </ul>
+    <nav className="flex items-center justify-between px-5 mb-5 border-b h-14 font-poppins">
+      <div className="flex items-center gap-6">
+        <Link href="/">
+          <FaBug />
+        </Link>
+        <ul className="flex gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={classNames({
+                "text-foreground": link.href === pathname,
+                "text-foreground/60": link.href !== pathname,
+                "hover:text-zinc-700 transition-colors": true,
+              })}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </ul>
+      </div>
       <ModeToggle />
     </nav>
   );
