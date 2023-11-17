@@ -1,20 +1,14 @@
-import IssueStatusBadge from "@/components/IssueStatusBadge";
-import { Button } from "@/components/ui/button";
+import { Link, IssueStatusBadge } from "@/components/index";
+import IssuesAction from "./IssuesAction";
 import {
   Table,
-  TableCaption,
-  TableHeader,
-  TableRow,
-  TableHead,
   TableBody,
   TableCell,
-  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import prisma from "@/prisma/client";
-import Link from "@/components/Link";
-import React from "react";
-
-import IssuesAction from "./IssuesAction";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
