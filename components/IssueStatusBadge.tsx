@@ -28,7 +28,7 @@ const IssueStatusBadge = ({ status }: { status: Status }) => {
         "bg-green-400 hover:bg-green-500 rounded-sm": status === "CLOSED",
       })}
     >
-      {label}
+      <span className=""> {label}</span>
     </Badge>
   );
 };
