@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import NavBar from "./NavBar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import AuthProvider from "./auth/AuthProvider";
+import QueryClientProvider from "./QueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
@@ -26,21 +27,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={(cn(inter.variable, poppins.variable), "border ")}>
-        <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="system">
-            <div className="border shadow-md bg-secondary shadow-slate-700">
-              <NavBar />
-            </div>
-            <main
-              className={
-                (cn(inter.variable, poppins.variable),
-                "p-5 mx-auto max-w-[1440px]  min-h-screen bg-secondary/90")
-              }
-            >
-              {children}
-            </main>
-          </ThemeProvider>
-        </AuthProvider>
+        <QueryClientProvider>
+          <AuthProvider>
+            <ThemeProvider attribute="class" defaultTheme="system">
+              <div className="border shadow-md bg-secondary shadow-slate-700">
+                <NavBar />
+              </div>
+              <main
+                className={
+                  (cn(inter.variable, poppins.variable),
+                  "p-5 mx-auto max-w-[1440px]  min-h-screen bg-secondary/90")
+                }
+              >
+                {children}
+              </main>
+            </ThemeProvider>
+          </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
