@@ -8,7 +8,7 @@ interface Props {
 
 const Link = ({ children, href }: Props) => {
   return (
-    <NextLink href={href} className=" text-primary/80 hover:underline">
+    <NextLink href={href} className="text-sky-500 hover:underline">
       {children}
     </NextLink>
   );

@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import UserDropdown from "@/components/UserDropdown";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const NavBar = () => {
   const navLinks = [
@@ -31,7 +32,6 @@ const NavBar = () => {
   ];
 
   const pathname = usePathname();
-  const { status, data: session } = useSession();
 
   return (
     <nav className="flex items-center justify-between px-5 py-3 mx-auto max-w-[1440px] font-poppins">
@@ -58,15 +58,30 @@ const NavBar = () => {
       </div>
       <div className="flex items-center gap-5">
         <ModeToggle />
-        {status === "authenticated" && <UserDropdown session={session} />}
-        {status === "unauthenticated" && (
-          <Button variant={"default"}>
-            <Link href="/api/auth/signin">Login</Link>
-          </Button>
-        )}
+        <AuthStatus />
       </div>
     </nav>
   );
+};
+
+const AuthStatus = () => {
+  const { status, data: session } = useSession();
+
+  if (status === "loading") {
+    return (
+      <Skeleton className="w-10 h-10 bg-gray-200 rounded-full animate-pulse " />
+    );
+  }
+
+  if (status === "unauthenticated") {
+    return (
+      <Button variant={"default"}>
+        <Link href="/api/auth/signin">Login</Link>
+      </Button>
+    );
+  }
+
+  return <UserDropdown session={session!} />;
 };
 
 export default NavBar;
