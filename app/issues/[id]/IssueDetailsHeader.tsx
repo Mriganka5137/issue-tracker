@@ -32,7 +32,7 @@ const IssueDetailsHeader = ({ issue }: Props) => {
             Edit Issue
           </Link>
         </Button>
-        <IssueDeleteAction />
+        <IssueDeleteAction issueId={issue.id} />
       </div>
     </div>
   );
