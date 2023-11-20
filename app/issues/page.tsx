@@ -20,7 +20,7 @@ const IssuesPage = async () => {
       <Table className="">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[250px]">Title</TableHead>
+            <TableHead className="w-[350px]">Title</TableHead>
             <TableHead className="max-sm:hidden">Status</TableHead>
             <TableHead className="max-sm:hidden">Created</TableHead>
           </TableRow>
