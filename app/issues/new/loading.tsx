@@ -1,13 +1,3 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import React from "react";
+import IssueFormSkeleton from "../_components/IssueFormSkeleton";
 
-const loading = () => {
-  return (
-    <div className="max-w-xl ">
-      <Skeleton className="h-8" />
-      <Skeleton className="max-h-[500px]" />
-    </div>
-  );
-};
-
-export default loading;
+export default IssueFormSkeleton;
