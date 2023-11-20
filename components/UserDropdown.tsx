@@ -22,7 +22,7 @@ const UserDropdown = ({ session }: { session: Session }) => {
           <AvatarFallback>MG</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="px-5 py-3">
+      <DropdownMenuContent className="px-5 py-3 bg-secondary">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>{session.user?.name}</DropdownMenuItem>
@@ -31,7 +31,7 @@ const UserDropdown = ({ session }: { session: Session }) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
 
-        <Button variant={"secondary"} className="mt-5 ">
+        <Button variant={"outline"} className="mt-5 ">
           <Link href="/api/auth/signout">Logout</Link>
         </Button>
       </DropdownMenuContent>

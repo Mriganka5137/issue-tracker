@@ -34,7 +34,7 @@ const NavBar = () => {
   const { status, data: session } = useSession();
 
   return (
-    <nav className="flex items-center justify-between px-5 py-3 mb-5 border-b mx-auto max-w-[1440px] font-poppins">
+    <nav className="flex items-center justify-between px-5 py-3 mx-auto max-w-[1440px] font-poppins">
       <div className="flex items-center gap-6">
         <Link href="/">
           <FaBug />

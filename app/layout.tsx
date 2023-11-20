@@ -25,14 +25,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.variable, poppins.variable)}>
+      <body className={(cn(inter.variable, poppins.variable), "border ")}>
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system">
-            <NavBar />
+            <div className="border shadow-md bg-secondary shadow-slate-700">
+              <NavBar />
+            </div>
             <main
               className={
                 (cn(inter.variable, poppins.variable),
-                "p-5 mx-auto max-w-[1440px]")
+                "p-5 mx-auto max-w-[1440px]  min-h-screen bg-secondary/90")
               }
             >
               {children}

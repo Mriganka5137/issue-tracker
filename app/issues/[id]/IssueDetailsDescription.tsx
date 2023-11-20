@@ -8,7 +8,7 @@ const IssueDetailsDescription = ({
   issueDescription: string;
 }) => {
   return (
-    <Card className="w-full p-3 mt-10">
+    <Card className="w-full p-3 mt-10 bg-secondary">
       <ReactMarkdown>{issueDescription}</ReactMarkdown>
     </Card>
   );

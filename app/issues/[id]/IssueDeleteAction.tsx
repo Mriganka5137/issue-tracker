@@ -40,7 +40,7 @@ const IssueDeleteAction = ({ issueId }: { issueId: number }) => {
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button
-            className="border border-red-400 group hover:bg-red-400"
+            className="border border-red-400 group hover:bg-red-400 bg-secondary"
             variant="outline"
             disabled={isDeleting}
           >
