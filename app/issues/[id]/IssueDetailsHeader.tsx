@@ -7,12 +7,15 @@ import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import IssueDeleteAction from "./IssueDeleteAction";
+import { Session, getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 interface Props {
   issue: Issue;
 }
 
-const IssueDetailsHeader = ({ issue }: Props) => {
+const IssueDetailsHeader = async ({ issue }: Props) => {
+  const session = await getServerSession(authOptions);
   return (
     <div className="flex justify-between col-span-2 max-sm:flex-col">
       <div>
@@ -22,18 +25,21 @@ const IssueDetailsHeader = ({ issue }: Props) => {
           <p>{issue.createAt.toDateString()}</p>
         </div>
       </div>
-      <div className="flex justify-between gap-3">
-        <Button variant={"outline"} className="bg-secondary">
-          <Link
-            href={`/issues/edit/${issue.id}`}
-            className="flex items-center gap-2"
-          >
-            <FaEdit />
-            Edit Issue
-          </Link>
-        </Button>
-        <IssueDeleteAction issueId={issue.id} />
-      </div>
+
+      {session && (
+        <div className="flex justify-between gap-3">
+          <Button variant={"outline"} className="bg-secondary">
+            <Link
+              href={`/issues/edit/${issue.id}`}
+              className="flex items-center gap-2"
+            >
+              <FaEdit />
+              Edit Issue
+            </Link>
+          </Button>
+          <IssueDeleteAction issueId={issue.id} />
+        </div>
+      )}
     </div>
   );
 };

@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import IssueDetailsHeader from "./IssueDetailsHeader";
 import IssueDetailsDescription from "./IssueDetailsDescription";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 interface Props {
   params: { id: string };
