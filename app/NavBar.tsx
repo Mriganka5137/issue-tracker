@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import UserDropdown from "@/components/UserDropdown";
 
 const NavBar = () => {
   const navLinks = [
@@ -33,7 +34,7 @@ const NavBar = () => {
   const { status, data: session } = useSession();
 
   return (
-    <nav className="flex items-center justify-between px-5 py-3 mb-5 border-b font-poppins mx-auto max-w-[1440px]">
+    <nav className="flex items-center justify-between px-5 py-3 mb-5 border-b mx-auto max-w-[1440px] font-poppins">
       <div className="flex items-center gap-6">
         <Link href="/">
           <FaBug />
@@ -57,28 +58,7 @@ const NavBar = () => {
       </div>
       <div className="flex items-center gap-5">
         <ModeToggle />
-        {status === "authenticated" && (
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Avatar className="cursor-pointer ">
-                <AvatarImage src={session.user!.image!} />
-                <AvatarFallback>MG</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="px-5 py-3">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>{session.user?.name}</DropdownMenuItem>
-              <DropdownMenuItem className=" text-primary">
-                {session.user?.email}
-              </DropdownMenuItem>
-
-              <Button variant={"secondary"} className="mt-5 ">
-                <Link href="/api/auth/signout">Logout</Link>
-              </Button>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+        {status === "authenticated" && <UserDropdown session={session} />}
         {status === "unauthenticated" && (
           <Button variant={"default"}>
             <Link href="/api/auth/signin">Login</Link>

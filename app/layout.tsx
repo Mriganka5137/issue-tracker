@@ -29,7 +29,14 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system">
             <NavBar />
-            <main className="p-5 mx-auto max-w-[1440px]">{children}</main>
+            <main
+              className={
+                (cn(inter.variable, poppins.variable),
+                "p-5 mx-auto max-w-[1440px]")
+              }
+            >
+              {children}
+            </main>
           </ThemeProvider>
         </AuthProvider>
       </body>
