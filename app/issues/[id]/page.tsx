@@ -21,8 +21,8 @@ const IssueDetailPage = async ({ params }: Props) => {
   }
 
   return (
-    <div className="grid grid-cols-2 max-sm:grid-cols-1 font-poppins ">
-      <div className="col-span-2 px-10 max-sm:px-0 ">
+    <div className=" font-poppins">
+      <div className="px-10 max-sm:px-0 ">
         <IssueDetailsHeader issue={issue} />
         <IssueDetailsDescription issueDescription={issue.description} />
       </div>

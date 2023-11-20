@@ -1,9 +1,12 @@
+import DeleteIcon from "@/components/DeleteIcon";
 import IssueStatusBadge from "@/components/IssueStatusBadge";
 import { Button } from "@/components/ui/button";
 import { Issue } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
 import { FaEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
+
 interface Props {
   issue: Issue;
 }
@@ -18,7 +21,7 @@ const IssueDetailsHeader = ({ issue }: Props) => {
           <p>{issue.createAt.toDateString()}</p>
         </div>
       </div>
-      <div>
+      <div className="flex justify-between gap-3">
         <Button variant={"outline"} className="">
           <Link
             href={`/issues/${issue.id}/edit`}
@@ -27,6 +30,12 @@ const IssueDetailsHeader = ({ issue }: Props) => {
             <FaEdit />
             Edit Issue
           </Link>
+        </Button>
+        <Button
+          className="border border-red-400 group hover:bg-red-400"
+          variant="outline"
+        >
+          <DeleteIcon />
         </Button>
       </div>
     </div>
