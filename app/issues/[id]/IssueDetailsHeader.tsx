@@ -25,7 +25,7 @@ const IssueDetailsHeader = ({ issue }: Props) => {
       <div className="flex justify-between gap-3">
         <Button variant={"outline"} className="">
           <Link
-            href={`/issues/${issue.id}/edit`}
+            href={`/issues/edit/${issue.id}`}
             className="flex items-center gap-2"
           >
             <FaEdit />

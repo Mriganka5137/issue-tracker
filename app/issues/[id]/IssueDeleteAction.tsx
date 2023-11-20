@@ -1,5 +1,6 @@
 "use client";
 import DeleteIcon from "@/components/DeleteIcon";
+import Spinner from "@/components/Spinner";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,14 +21,17 @@ import React, { useState } from "react";
 const IssueDeleteAction = ({ issueId }: { issueId: number }) => {
   const router = useRouter();
   const [error, setError] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const deleteIssue = async () => {
     try {
+      setIsDeleting(true);
       await axios.delete("/api/issues/" + issueId);
-      router.push("/issues");
+      router.push("/issues/list");
       router.refresh();
     } catch (error) {
       setError(true);
+      setIsDeleting(false);
     }
   };
 
@@ -38,8 +42,10 @@ const IssueDeleteAction = ({ issueId }: { issueId: number }) => {
           <Button
             className="border border-red-400 group hover:bg-red-400"
             variant="outline"
+            disabled={isDeleting}
           >
             <DeleteIcon />
+            {isDeleting && <Spinner className="" />}
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
