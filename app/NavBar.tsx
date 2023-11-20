@@ -69,7 +69,7 @@ const AuthStatus = () => {
 
   if (status === "loading") {
     return (
-      <Skeleton className="w-10 h-10 bg-gray-200 rounded-full animate-pulse " />
+      <Skeleton className="w-10 h-10 bg-gray-200 rounded-full dark:bg-gray-600 animate-pulse " />
     );
   }
 

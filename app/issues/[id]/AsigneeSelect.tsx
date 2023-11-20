@@ -41,7 +41,8 @@ const AsigneeSelect = () => {
     retry: 3,
   });
 
-  if (isLoading) return <Skeleton className="w-40 h-10 bg-gray-200" />;
+  if (isLoading)
+    return <Skeleton className="w-40 h-10 bg-gray-200 dark:bg-gray-600" />;
   if (error) return null;
 
   return (
