@@ -26,7 +26,7 @@ const UserDropdown = ({ session }: { session: Session }) => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>{session.user?.name}</DropdownMenuItem>
-        <DropdownMenuItem className=" text-primary">
+        <DropdownMenuItem className="text-secondary-foreground/40">
           {session.user?.email}
         </DropdownMenuItem>
         <DropdownMenuSeparator />

@@ -9,6 +9,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import IssueDeleteAction from "./IssueDeleteAction";
 import { Session, getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
+import AsigneeSelect from "./AsigneeSelect";
 
 interface Props {
   issue: Issue;
@@ -27,7 +28,8 @@ const IssueDetailsHeader = async ({ issue }: Props) => {
       </div>
 
       {session && (
-        <div className="flex justify-between gap-3">
+        <div className="flex flex-wrap gap-3 justify-evenly">
+          <AsigneeSelect />
           <Button variant={"outline"} className="bg-secondary">
             <Link
               href={`/issues/edit/${issue.id}`}
