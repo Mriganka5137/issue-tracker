@@ -7,6 +7,15 @@ import classNames from "classnames";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const NavBar = () => {
   const navLinks = [
@@ -49,9 +58,26 @@ const NavBar = () => {
       <div className="flex items-center gap-5">
         <ModeToggle />
         {status === "authenticated" && (
-          <Button variant={"secondary"}>
-            <Link href="/api/auth/signout">Logout</Link>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Avatar className="cursor-pointer ">
+                <AvatarImage src={session.user!.image!} />
+                <AvatarFallback>MG</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="px-5 py-3">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>{session.user?.name}</DropdownMenuItem>
+              <DropdownMenuItem className=" text-primary">
+                {session.user?.email}
+              </DropdownMenuItem>
+
+              <Button variant={"secondary"} className="mt-5 ">
+                <Link href="/api/auth/signout">Logout</Link>
+              </Button>
+            </DropdownMenuContent>
+          </DropdownMenu>
         )}
         {status === "unauthenticated" && (
           <Button variant={"default"}>
