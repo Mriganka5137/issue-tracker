@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import NavBar from "./NavBar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import AuthProvider from "./auth/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
@@ -25,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.variable, poppins.variable)}>
-        <ThemeProvider attribute="class" defaultTheme="system">
-          <NavBar />
-          <main className="p-5 mx-auto max-w-[1440px]">{children}</main>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider attribute="class" defaultTheme="system">
+            <NavBar />
+            <main className="p-5 mx-auto max-w-[1440px]">{children}</main>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
