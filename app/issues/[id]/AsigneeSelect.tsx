@@ -11,11 +11,16 @@ import {
 import prisma from "@/prisma/client";
 
 const AsigneeSelect = async () => {
-  const users = await prisma.user.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  });
+  let users;
+  try {
+    users = await prisma.user.findMany({
+      orderBy: {
+        name: "asc",
+      },
+    });
+  } catch (error) {
+    throw new Error();
+  }
   if (!users) {
     return;
   }
