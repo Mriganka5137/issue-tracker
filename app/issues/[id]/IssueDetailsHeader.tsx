@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import IssueDeleteAction from "./IssueDeleteAction";
 
 interface Props {
   issue: Issue;
@@ -31,12 +32,7 @@ const IssueDetailsHeader = ({ issue }: Props) => {
             Edit Issue
           </Link>
         </Button>
-        <Button
-          className="border border-red-400 group hover:bg-red-400"
-          variant="outline"
-        >
-          <DeleteIcon />
-        </Button>
+        <IssueDeleteAction />
       </div>
     </div>
   );
