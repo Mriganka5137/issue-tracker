@@ -1,5 +1,6 @@
 import IssueStatusBadge from "@/components/IssueStatusBadge";
 import IssuesAction from "./IssuesAction";
+import delay from "delay";
 import {
   Table,
   TableBody,
@@ -13,7 +14,7 @@ import Link from "@/components/Link";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
-
+  // await delay(3000);
   return (
     <div className="font-poppins">
       <IssuesAction />

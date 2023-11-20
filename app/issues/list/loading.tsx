@@ -1,4 +1,3 @@
-import IssueStatusBadge from "@/components/IssueStatusBadge";
 import {
   Table,
   TableHeader,
