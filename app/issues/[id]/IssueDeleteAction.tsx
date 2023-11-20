@@ -34,7 +34,7 @@ const IssueDeleteAction = () => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className=" bg-secondary">
+          <AlertDialogCancel className=" bg-secondary/50">
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction className="bg-red-400 hover:bg-red-600">
