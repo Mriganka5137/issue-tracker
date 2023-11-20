@@ -31,7 +31,7 @@ const IssuesPage = async () => {
             <TableRow key={issue.id}>
               <TableCell className="font-medium">
                 <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
-                <div className=" sm:hidden">
+                <div className="mt-3 sm:hidden">
                   <IssueStatusBadge status={issue.status} />
                 </div>
               </TableCell>

@@ -6,6 +6,8 @@ import { FaBug } from "react-icons/fa6";
 import classNames from "classnames";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useSession } from "next-auth/react";
+import { Button } from "@/components/ui/button";
+
 const NavBar = () => {
   const navLinks = [
     {
@@ -22,12 +24,12 @@ const NavBar = () => {
   const { status, data: session } = useSession();
 
   return (
-    <nav className="flex items-center justify-between px-5 mb-5 border-b h-14 font-poppins">
+    <nav className="flex items-center justify-between px-5 py-3 mb-5 border-b font-poppins mx-auto max-w-[1440px]">
       <div className="flex items-center gap-6">
         <Link href="/">
           <FaBug />
         </Link>
-        <ul className="flex gap-6">
+        <ul className="flex gap-6 max-md:hidden">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
@@ -44,13 +46,17 @@ const NavBar = () => {
           ))}
         </ul>
       </div>
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-5">
         <ModeToggle />
         {status === "authenticated" && (
-          <Link href="/api/auth/signout">Logout</Link>
+          <Button variant={"secondary"}>
+            <Link href="/api/auth/signout">Logout</Link>
+          </Button>
         )}
         {status === "unauthenticated" && (
-          <Link href="/api/auth/signin">Login</Link>
+          <Button variant={"default"}>
+            <Link href="/api/auth/signin">Login</Link>
+          </Button>
         )}
       </div>
     </nav>
