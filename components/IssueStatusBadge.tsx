@@ -4,7 +4,6 @@ import { Badge } from "./ui/badge";
 import classNames from "classnames";
 
 const IssueStatusBadge = ({ status }: { status: Status }) => {
-  console.log(status);
   let label;
   switch (status) {
     case "OPEN":
@@ -22,10 +21,13 @@ const IssueStatusBadge = ({ status }: { status: Status }) => {
   return (
     <Badge
       className={classNames({
-        "bg-red-400 hover:bg-red-500  rounded-sm": status === "OPEN",
-        "bg-violet-400 hover:bg-violet-500 rounded-sm":
+        "bg-red-100 text-red-400  rounded-[5px] hover:bg-red-200":
+          status === "OPEN",
+        "bg-violet-100 text-violet-400 rounded-[5px] hover:bg-violet-200  ":
           status === "IN_PROGRESS",
-        "bg-green-400 hover:bg-green-500 rounded-sm": status === "CLOSED",
+        "bg-green-100 text-green-400 rounded-[5px] hover:bg-green-200":
+          status === "CLOSED",
+        "px-3 py-1.5": true,
       })}
     >
       <span className=""> {label}</span>
