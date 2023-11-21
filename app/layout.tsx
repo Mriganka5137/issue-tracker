@@ -26,11 +26,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={(cn(inter.variable, poppins.variable), "border ")}>
+      <body className={(cn(inter.variable, poppins.variable), " bg-secondary")}>
         <QueryClientProvider>
           <AuthProvider>
             <ThemeProvider attribute="class" defaultTheme="system">
-              <div className="border shadow-md bg-secondary shadow-slate-700">
+              <div className="border-b bg-secondary ">
                 <NavBar />
               </div>
               <main

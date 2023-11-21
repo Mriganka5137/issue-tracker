@@ -34,7 +34,7 @@ const NavBar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center justify-between px-5 py-3 mx-auto max-w-[1440px] font-poppins">
+    <nav className="flex items-center justify-between px-5 py-3 mx-auto max-w-[1440px] font-poppins ">
       <div className="flex items-center gap-6">
         <Link href="/">
           <FaBug />

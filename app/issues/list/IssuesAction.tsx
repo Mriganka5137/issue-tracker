@@ -1,6 +1,5 @@
 import authOptions from "@/app/auth/authOptions";
 import { Button } from "@/components/ui/button";
-import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
 import IssuesListFilter from "./IssuesListFilter";

@@ -1,6 +1,5 @@
 import IssueStatusBadge from "@/components/IssueStatusBadge";
 import IssuesAction from "./IssuesAction";
-import delay from "delay";
 import {
   Table,
   TableBody,
@@ -11,14 +10,30 @@ import {
 } from "@/components/ui/table";
 import prisma from "@/prisma/client";
 import Link from "@/components/Link";
+import { Status } from "@prisma/client";
+import { undefined } from "zod";
 
-const IssuesPage = async () => {
-  const issues = await prisma.issue.findMany();
-  // await delay(3000);
+interface Props {
+  searchParams: {
+    status: Status;
+  };
+}
+
+const IssuesPage = async ({ searchParams }: Props) => {
+  const statuses = Object.values(Status);
+  const status = statuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+
+  const issues = await prisma.issue.findMany({
+    where: {
+      status,
+    },
+  });
   return (
     <div className="font-poppins">
       <IssuesAction />
-      <Table className="">
+      <Table className="bg-secondary">
         <TableHeader>
           <TableRow>
             <TableHead className="w-[350px]">Title</TableHead>

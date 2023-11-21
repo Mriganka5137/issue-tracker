@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Status } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 const statuses: { label: string; value: Status }[] = [
   //   { label: "All" },
@@ -16,15 +17,27 @@ const statuses: { label: string; value: Status }[] = [
 ];
 
 const IssuesListFilter = () => {
+  const router = useRouter();
   return (
-    <Select>
+    <Select
+      onValueChange={(status) => {
+        const query = status === "all" ? "" : `?status=${status}`;
+        router.push(`/issues/list${query}`);
+      }}
+    >
       <SelectTrigger className="w-[150px] bg-secondary border border-secondary-foreground/20 max-sm:w-full">
         <SelectValue placeholder="Filter by status" />
       </SelectTrigger>
       <SelectContent className="bg-secondary ">
-        <SelectItem value="all">All</SelectItem>
+        <SelectItem value="all" className="cursor-pointer">
+          All
+        </SelectItem>
         {statuses.map((status) => (
-          <SelectItem key={status.value} value={status.value}>
+          <SelectItem
+            key={status.value}
+            value={status.value}
+            className="cursor-pointer "
+          >
             {status.label}
           </SelectItem>
         ))}
