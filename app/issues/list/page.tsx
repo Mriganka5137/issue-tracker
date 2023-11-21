@@ -11,9 +11,9 @@ import {
 import prisma from "@/prisma/client";
 import Link from "@/components/Link";
 import { Issue, Status } from "@prisma/client";
-import { undefined } from "zod";
 import NextLink from "next/link";
 import { ArrowUp } from "lucide-react";
+import { undefined } from "zod";
 interface Props {
   searchParams: {
     status: Status;
@@ -33,10 +33,16 @@ const IssuesPage = async ({ searchParams }: Props) => {
     ? searchParams.status
     : undefined;
 
+  const orderBy = columns
+    .map((column) => column.value)
+    .includes(searchParams.orderBy)
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
   const issues = await prisma.issue.findMany({
     where: {
       status,
     },
+    orderBy,
   });
   return (
     <div className="font-poppins">
