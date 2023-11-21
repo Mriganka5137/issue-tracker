@@ -29,7 +29,7 @@ const IssueDetailsHeader = async ({ issue }: Props) => {
 
       {session && (
         <div className="flex flex-wrap gap-3 justify-evenly">
-          <AsigneeSelect />
+          <AsigneeSelect issue={issue} />
           <Button variant={"outline"} className="bg-secondary">
             <Link
               href={`/issues/edit/${issue.id}`}

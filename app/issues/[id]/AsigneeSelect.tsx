@@ -12,24 +12,10 @@ import {
 import prisma from "@/prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { User } from "@prisma/client";
+import { Issue, User } from "@prisma/client";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const AsigneeSelect = () => {
-  // let users;
-  // try {
-  //   users = await prisma.user.findMany({
-  //     orderBy: {
-  //       name: "asc",
-  //     },
-  //   });
-  // } catch (error) {
-  //   throw new Error();
-  // }
-  // if (!users) {
-  //   return;
-  // }
-
+const AsigneeSelect = ({ issue }: { issue: Issue }) => {
   const {
     data: users,
     isLoading,
@@ -46,13 +32,20 @@ const AsigneeSelect = () => {
   if (error) return null;
 
   return (
-    <Select>
+    <Select
+      defaultValue={issue.assignedToUserId || ""}
+      onValueChange={(userId) => {
+        axios.patch("/api/issues/" + issue.id, {
+          assignedToUserId: userId === "unassigned" ? null : userId,
+        });
+      }}
+    >
       <SelectTrigger className="w-[150px] bg-secondary flex-1">
         <SelectValue placeholder="Select Assignee" />
       </SelectTrigger>
       <SelectContent className=" bg-secondary">
         <SelectGroup>
-          <SelectLabel>Asignee</SelectLabel>
+          <SelectItem value="unassigned">Unassigned</SelectItem>
           {users?.map((user) => (
             <SelectItem
               key={user.id}
