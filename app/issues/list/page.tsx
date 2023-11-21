@@ -33,7 +33,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
   return (
     <div className="font-poppins">
       <IssuesAction />
-      <Table className="bg-secondary">
+      <Table className=" bg-secondary">
         <TableHeader>
           <TableRow>
             <TableHead className="w-[350px]">Title</TableHead>
@@ -43,10 +43,12 @@ const IssuesPage = async ({ searchParams }: Props) => {
         </TableHeader>
         <TableBody className=" text-secondary-foreground">
           {issues.map((issue) => (
-            <TableRow key={issue.id}>
+            <TableRow key={issue.id} className="">
               <TableCell className="font-medium">
-                <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
-                <div className="mt-3 sm:hidden">
+                <Link href={`/issues/${issue.id}`} className="line-clamp-1">
+                  {issue.title}
+                </Link>
+                <div className="mt-2 sm:hidden">
                   <IssueStatusBadge status={issue.status} />
                 </div>
               </TableCell>
