@@ -10,10 +10,7 @@ interface Props {
 
 const Link = ({ children, href, className }: Props) => {
   return (
-    <NextLink
-      href={href}
-      className={cn("text-sky-500 hover:underline", className)}
-    >
+    <NextLink href={href} className={cn(className)}>
       {children}
     </NextLink>
   );
