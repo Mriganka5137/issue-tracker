@@ -1,6 +1,6 @@
 import authOptions from "@/app/auth/authOptions";
 import prisma from "@/prisma/client";
-import { issueSchema } from "@/validation/createIssueSchema";
+import { patchIssueSchema } from "@/validation/createIssueSchema";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -8,16 +8,28 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({}, { status: 401 });
-  }
+  // const session = await getServerSession(authOptions);
+  // if (!session) {
+  //   return NextResponse.json({}, { status: 401 });
+  // }
 
   const body = await request.json();
-  const validation = issueSchema.safeParse(body);
-
+  const validation = patchIssueSchema.safeParse(body);
   if (!validation.success) {
     return NextResponse.json(validation.error.errors, { status: 400 });
+  }
+  const { assignedToUserId, description, title } = body;
+
+  if (assignedToUserId) {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: assignedToUserId,
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json("User does not exists", { status: 400 });
+    }
   }
 
   const issue = await prisma.issue.findUnique({
@@ -27,7 +39,10 @@ export async function PATCH(
   });
 
   if (!issue) {
-    return NextResponse.json("Issue does not exists", { status: 404 });
+    return NextResponse.json(
+      { error: "Issue does not exists" },
+      { status: 404 }
+    );
   }
 
   const updatedIssue = await prisma.issue.update({
@@ -35,8 +50,9 @@ export async function PATCH(
       id: issue.id,
     },
     data: {
-      title: body.title,
-      description: body.description,
+      title: title,
+      description: description,
+      assignedToUserId,
     },
   });
 
