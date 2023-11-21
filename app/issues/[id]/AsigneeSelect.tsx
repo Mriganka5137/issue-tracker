@@ -14,8 +14,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Issue, User } from "@prisma/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const AsigneeSelect = ({ issue }: { issue: Issue }) => {
+  const { toast } = useToast();
+
   const {
     data: users,
     isLoading,
@@ -35,9 +39,18 @@ const AsigneeSelect = ({ issue }: { issue: Issue }) => {
     <Select
       defaultValue={issue.assignedToUserId || ""}
       onValueChange={(userId) => {
-        axios.patch("/api/issues/" + issue.id, {
-          assignedToUserId: userId === "unassigned" ? null : userId,
-        });
+        axios
+          .patch("/apsi/issues/" + issue.id, {
+            assignedToUserId: userId === "unassigned" ? null : userId,
+          })
+          .catch(() => {
+            toast({
+              variant: "destructive",
+              title: "Uh oh! Something went wrong.",
+              description: "Cannot assign issue to the user.",
+              action: <ToastAction altText="Try again">Try again</ToastAction>,
+            });
+          });
       }}
     >
       <SelectTrigger className="w-[150px] bg-secondary flex-1">

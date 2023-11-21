@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import AuthProvider from "./auth/AuthProvider";
 import QueryClientProvider from "./QueryClientProvider";
-
+import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
   subsets: ["latin"],
@@ -41,6 +41,7 @@ export default function RootLayout({
               >
                 {children}
               </main>
+              <Toaster />
             </ThemeProvider>
           </AuthProvider>
         </QueryClientProvider>
