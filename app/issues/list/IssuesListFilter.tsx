@@ -21,6 +21,7 @@ const IssuesListFilter = () => {
 
   return (
     <Select
+      defaultValue={searchParams.get("status") || "all"}
       onValueChange={(status) => {
         searchParams.get("orderBy");
         const params = new URLSearchParams();
