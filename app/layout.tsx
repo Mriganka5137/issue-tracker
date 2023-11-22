@@ -8,6 +8,7 @@ import AuthProvider from "./auth/AuthProvider";
 import QueryClientProvider from "./QueryClientProvider";
 import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500"],

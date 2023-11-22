@@ -7,10 +7,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Status } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const statuses: { label: string; value: Status }[] = [
-  //   { label: "All" },
   { label: "Open", value: "OPEN" },
   { label: "In Progress", value: "IN_PROGRESS" },
   { label: "Closed", value: "CLOSED" },
@@ -18,10 +17,20 @@ const statuses: { label: string; value: Status }[] = [
 
 const IssuesListFilter = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   return (
     <Select
       onValueChange={(status) => {
-        const query = status === "all" ? "" : `?status=${status}`;
+        searchParams.get("orderBy");
+        const params = new URLSearchParams();
+        const statusParams = status === "all" ? "" : status;
+
+        if (statusParams) params.append("status", statusParams);
+        if (searchParams.get("orderBy"))
+          params.append("orderBy", searchParams.get("orderBy")!);
+
+        const query = params.size ? "?" + params.toString() : "";
         router.push(`/issues/list${query}`);
       }}
     >
