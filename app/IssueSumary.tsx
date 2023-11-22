@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Status } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
+
 interface Props {
   open: number;
   inProgress: number;
@@ -33,10 +34,10 @@ const IssueSumary = ({ open, closed, inProgress }: Props) => {
   ];
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 max-sm:flex-col">
       {containers.map((container) => (
         <Card key={container.label}>
-          <CardContent className="flex flex-col items-start gap-2 p-5">
+          <CardContent className="flex flex-col items-start justify-between gap-2 p-5 max-sm:flex-row max-sm:items-center">
             <Link
               href={`/issues/list?status=${container.status}`}
               className="text-sm font-medium hover:text-primary hover:underline"

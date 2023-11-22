@@ -17,7 +17,7 @@ const LatestIssues = async () => {
     },
   });
   return (
-    <Card>
+    <Card className="flex-1">
       <CardHeader>
         <h1>Latest Issues</h1>
       </CardHeader>
