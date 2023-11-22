@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={(cn(inter.variable, poppins.variable), " bg-secondary")}>
+      <body className={(cn(inter.variable, poppins.variable), "bg-secondary")}>
         <QueryClientProvider>
           <AuthProvider>
             <ThemeProvider attribute="class" defaultTheme="system">

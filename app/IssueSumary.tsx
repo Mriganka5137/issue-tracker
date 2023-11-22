@@ -13,40 +13,29 @@ const IssueSumary = ({ open, closed, inProgress }: Props) => {
     label: string;
     value: number;
     status: Status;
-    bgColor: string;
-    textColor: string;
   }[] = [
     {
       label: "Open Issues",
       value: open,
       status: "OPEN",
-      bgColor: "bg-red-50",
-      textColor: "text-red-700",
     },
 
     {
       label: "In Progress Issues",
       value: inProgress,
       status: "IN_PROGRESS",
-      bgColor: "bg-violet-50",
-      textColor: "text-violet-700",
     },
     {
       label: "Closed Issues",
       value: closed,
       status: "CLOSED",
-      bgColor: "bg-green-50",
-      textColor: "text-green-700",
     },
   ];
 
   return (
     <div className="flex gap-3">
       {containers.map((container) => (
-        <Card
-          key={container.label}
-          className={(container.bgColor, container.textColor)}
-        >
+        <Card key={container.label}>
           <CardContent className="flex flex-col items-start gap-2 p-5">
             <Link
               href={`/issues/list?status=${container.status}`}
