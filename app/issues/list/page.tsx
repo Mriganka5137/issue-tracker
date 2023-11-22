@@ -3,6 +3,7 @@ import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
 import IssueTable, { IssueQuery, columnValues } from "./IssueTable";
 import IssuesAction from "./IssuesAction";
+import { Metadata } from "next";
 
 interface Props {
   searchParams: IssueQuery;
@@ -49,3 +50,8 @@ const IssuesPage = async ({ searchParams }: Props) => {
 };
 
 export default IssuesPage;
+
+export const metadata: Metadata = {
+  title: "Issue List | Issue Tracker ",
+  description: " Issue List for Issue Tracker App",
+};

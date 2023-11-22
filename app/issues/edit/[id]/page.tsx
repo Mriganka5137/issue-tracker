@@ -27,3 +27,20 @@ const EditIssuePage = async ({ params }: Props) => {
 };
 
 export default EditIssuePage;
+
+export async function generateMetadata({ params }: Props) {
+  const issue = await prisma.issue.findUnique({
+    where: {
+      id: parseInt(params.id),
+    },
+  });
+
+  if (!issue) {
+    notFound();
+  }
+
+  return {
+    title: `${issue.title} | Issue Tracker`,
+    description: issue.description,
+  };
+}
