@@ -1,10 +1,27 @@
 import Pagination from "@/components/Pagination";
-import page from "./issues/[id]/page";
 import LatestIssues from "./LatestIssues";
+import IssueSumary from "./IssueSumary";
+import prisma from "@/prisma/client";
 
-export default function Home() {
+export default async function Home() {
+  const open = await prisma.issue.count({
+    where: {
+      status: "OPEN",
+    },
+  });
+  const closed = await prisma.issue.count({
+    where: {
+      status: "CLOSED",
+    },
+  });
+  const inProgress = await prisma.issue.count({
+    where: {
+      status: "IN_PROGRESS",
+    },
+  });
   return (
-    <div>
+    <div className="flex flex-col gap-10">
+      <IssueSumary open={open} closed={closed} inProgress={inProgress} />
       <LatestIssues />
     </div>
   );
