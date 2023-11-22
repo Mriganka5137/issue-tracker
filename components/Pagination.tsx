@@ -46,7 +46,7 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
           <SingleArrowLeft className="w-5 h-5" />
         </Button>
       </div>
-      <p>
+      <p className="text-sm ">
         Page {currentPage} of {pageCount}
       </p>
       <div className="space-x-3 ">

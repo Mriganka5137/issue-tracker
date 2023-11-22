@@ -1,5 +1,6 @@
 import IssueStatusBadge from "@/components/IssueStatusBadge";
 import Link from "@/components/Link";
+import { Card } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -25,49 +26,51 @@ interface Props {
 
 const IssueTable = ({ searchParams, issues }: Props) => {
   return (
-    <Table className=" bg-secondary">
-      <TableHeader>
-        <TableRow>
-          {columns.map((column) => (
-            <TableHead key={column.label} className={column.className}>
-              <NextLink
-                href={{
-                  query: { ...searchParams, orderBy: column.value },
-                }}
-              >
-                {column.label}
-              </NextLink>
-              {column.value === searchParams.orderBy && (
-                <ArrowUp className="inline" />
-              )}
-            </TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody className=" text-secondary-foreground">
-        {issues.map((issue) => (
-          <TableRow key={issue.id} className="">
-            <TableCell className="font-medium">
-              <Link
-                href={`/issues/${issue.id}`}
-                className="line-clamp-1 text-sky-600 hover:underline"
-              >
-                {issue.title}
-              </Link>
-              <div className="mt-2 sm:hidden">
-                <IssueStatusBadge status={issue.status} />
-              </div>
-            </TableCell>
-            <TableCell className="max-sm:hidden">
-              <IssueStatusBadge status={issue.status} />
-            </TableCell>
-            <TableCell className="max-sm:hidden">
-              {issue.createAt.toDateString()}
-            </TableCell>
+    <Card className="">
+      <Table className="">
+        <TableHeader>
+          <TableRow>
+            {columns.map((column) => (
+              <TableHead key={column.label} className={column.className}>
+                <NextLink
+                  href={{
+                    query: { ...searchParams, orderBy: column.value },
+                  }}
+                >
+                  {column.label}
+                </NextLink>
+                {column.value === searchParams.orderBy && (
+                  <ArrowUp className="inline" />
+                )}
+              </TableHead>
+            ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody className=" text-secondary-foreground">
+          {issues.map((issue) => (
+            <TableRow key={issue.id} className="">
+              <TableCell className="font-medium">
+                <Link
+                  href={`/issues/${issue.id}`}
+                  className="line-clamp-1 text-sky-600 hover:underline"
+                >
+                  {issue.title}
+                </Link>
+                <div className="mt-2 sm:hidden">
+                  <IssueStatusBadge status={issue.status} />
+                </div>
+              </TableCell>
+              <TableCell className="max-sm:hidden">
+                <IssueStatusBadge status={issue.status} />
+              </TableCell>
+              <TableCell className="max-sm:hidden">
+                {issue.createAt.toDateString()}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Card>
   );
 };
 
