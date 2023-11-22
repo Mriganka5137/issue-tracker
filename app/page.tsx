@@ -26,7 +26,6 @@ export default async function Home() {
         <IssueSumary open={open} closed={closed} inProgress={inProgress} />
         <IssueChart open={open} closed={closed} inProgress={inProgress} />
       </div>
-
       <LatestIssues />
     </div>
   );
