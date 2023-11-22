@@ -1,9 +1,8 @@
-import Pagination from "@/components/Pagination";
-import LatestIssues from "./LatestIssues";
-import IssueSumary from "./IssueSumary";
 import prisma from "@/prisma/client";
-import IssueChart from "./IssueChart";
 import { Metadata } from "next";
+import IssueChart from "./IssueChart";
+import IssueSumary from "./IssueSumary";
+import LatestIssues from "./LatestIssues";
 
 export default async function Home() {
   const open = await prisma.issue.count({
